@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinematic Agency</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0a0a0a;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    .navbar{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      padding:25px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,0.25);
+    }
+
+    .logo{
+      font-size:1.2rem;
+      font-weight:700;
+      letter-spacing:2px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:40px;
+    }
+
+    .nav-links a{
+      font-size:.95rem;
+      opacity:.8;
+      transition:.3s;
+    }
+
+    .nav-links a:hover{
+      opacity:1;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      padding:0 80px;
+      overflow:hidden;
+    }
+
+    .hero video{
+      position:absolute;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      top:0;
+      left:0;
+      z-index:-2;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.4),
+        rgba(0,0,0,.8)
+      );
+      z-index:-1;
+    }
+
+    .hero-content{
+      max-width:800px;
+    }
+
+    .hero-sub{
+      font-size:.9rem;
+      text-transform:uppercase;
+      letter-spacing:3px;
+      margin-bottom:20px;
+      opacity:.7;
+    }
+
+    .hero-title{
+      font-size:5rem;
+      line-height:1;
+      font-weight:700;
+      margin-bottom:30px;
+    }
+
+    .hero-desc{
+      max-width:600px;
+      color:#cfcfcf;
+      line-height:1.7;
+      margin-bottom:40px;
+    }
+
+    .hero-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 28px;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:100px;
+      transition:.3s;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero-btn:hover{
+      background:white;
+      color:black;
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:120px 80px;
+    }
+
+    .section-title{
+      font-size:3rem;
+      margin-bottom:60px;
+    }
+
+    /* GRID */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      height:500px;
+      cursor:pointer;
+    }
+
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .6s ease;
+    }
+
+    .card:hover img{
+      transform:scale(1.08);
+    }
+
+    .card-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to top,
+        rgba(0,0,0,.9),
+        transparent
+      );
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:30px;
+    }
+
+    .card-category{
+      font-size:.8rem;
+      letter-spacing:2px;
+      opacity:.7;
+      margin-bottom:10px;
+    }
+
+    .card-title{
+      font-size:2rem;
+      font-weight:600;
+    }
+
+    /* ABOUT */
+
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:80px;
+      align-items:center;
+    }
+
+    .about-text h2{
+      font-size:3rem;
+      margin-bottom:30px;
+    }
+
+    .about-text p{
+      color:#cfcfcf;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:24px;
+      height:700px;
+      object-fit:cover;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:60px 80px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    footer p{
+      color:#9c9c9c;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .navbar{
+        padding:20px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .hero{
+        padding:0 25px;
+      }
+
+      .hero-title{
+        font-size:3rem;
+      }
+
+      .section{
+        padding:80px 25px;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+
+      .about img{
+        height:450px;
+      }
+
+      footer{
+        padding:40px 25px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+    <div class="logo">STUDIO</div>
+
+    <div class="nav-links">
+      <a href="#">Work</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    
+    <div class="overlay"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1500&q=80" alt="Cinematic scene" class="hero-image">
+</div>
+
+    <div class="hero-content">
+      <p class="hero-sub">Creative Film Production</p>
+
+      <h1 class="hero-title">
+        Cinematic <br>
+        Digital Experiences
+      </h1>
+
+      <p class="hero-desc">
+        We craft premium visual experiences, combining cinematic storytelling,
+        modern design and immersive digital interaction.
+      </p>
+
+      <a href="#" class="hero-btn">
+        Explore Projects →
+      </a>
+    </div>
+
+  </section>
+
+  <!-- WORK -->
+
+  <section class="section">
+
+    <h2 class="section-title">Featured Work</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1400&auto=format&fit=crop" alt="">
+        <div class="card-overlay">
+          <p class="card-category">Commercial</p>
+          <h3 class="card-title">Vision</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop" alt="">
+        <div class="card-overlay">
+          <p class="card-category">Brand Film</p>
+          <h3 class="card-title">Motion</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?q=80&w=1400&auto=format&fit=crop" alt="">
+        <div class="card-overlay">
+          <p class="card-category">Creative</p>
+          <h3 class="card-title">Future</h3>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="section">
+
+    <div class="about">
+
+      <div class="about-text">
+        <h2>We Build Premium Visual Narratives</h2>
+
+        <p>
+          Inspired by modern cinematic agencies, we create immersive
+          storytelling experiences through motion, branding and digital design.
+        </p>
+
+        <p>
+          Our work combines minimalism, elegant typography and impactful visuals
+          to create emotionally driven experiences.
+        </p>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1400&auto=format&fit=crop" alt="">
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>© 2026 Studio Agency</p>
+    <p>Instagram / Vimeo / Behance</p>
+  </footer>
+
+</body>
+</html>
+
